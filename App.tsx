@@ -21,10 +21,15 @@ export default function App():React.JSX.Element {
     console.log(`Fullname has changed to : ${Fullname}`);
   },[Fullname]); //this will run whenever 'Fullname changes'
 
+  const handleButtonClick=()=>{
+    Alert.alert("Hello",`Input your Fullname : ${Fullname}`);
+  };
+
   return (
     <View style={stylesPractice.container}>
       <AppHeader fullname={Fullname} messages={message}/>
-      <Content Message={message} fullname={Fullname}/>
+      {/* <Content Message={message} fullname={Fullname}/> */}
+      <Content Message={message} onButtonClick = {handleButtonClick}/>
       <TextInput
       style={stylesPractice.input}
       placeholder="Enter your fullname"
