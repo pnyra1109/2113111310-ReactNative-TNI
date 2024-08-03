@@ -1,28 +1,38 @@
+
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, Alert } from "react-native";
+import { StyleSheet, Text, View, Button, Alert, TextInput } from "react-native";
 import AppFooter from "./components/AppFooter";
 import AppHeader from "./components/AppHeader";
 import Content from "./components/Content";
+import { stylesPractice } from "./styles/styles";
+import { useEffect, useState } from "react";
+
+
 
 export default function App():React.JSX.Element {
-  const onClickMe = ()=>{
-    Alert.alert("Hello");
-  }
+  const [Fullname,setFullname] = useState('');
+  const [message,setMessage] = useState('Message From App.tsx');
+  const [footerMessage,setFootertMessage] = useState('Thai-Nichi Institute of Technology');
+
+  useEffect(()=>{
+    console.log("Components has mounted");
+  },[]);
+  useEffect(()=>{
+    console.log(`Fullname has changed to : ${Fullname}`);
+  },[Fullname]); //this will run whenever 'Fullname changes'
 
   return (
-    <View style={styles.container}>
-      <AppHeader fullname="Pheeranat Ratchatavarah" messages="Message from App.tsx"/>
-      <Content Message="Message from App.tsx"/>
-      <AppFooter/>
+    <View style={stylesPractice.container}>
+      <AppHeader fullname={Fullname} messages={message}/>
+      <Content Message={message} fullname={Fullname}/>
+      <TextInput
+      style={stylesPractice.input}
+      placeholder="Enter your fullname"
+      value={Fullname}
+      onChangeText={setFullname}
+      />
+      <AppFooter footerMessage={footerMessage}/>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
