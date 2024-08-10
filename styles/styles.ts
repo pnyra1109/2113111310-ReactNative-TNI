@@ -110,5 +110,42 @@ const stylesLogin = StyleSheet.create({
   backgroundColor: "#f9f9f9", // ต้งัค่าสีพ้ืนหลงัของ TextInput
   },
   });
+  const stylesFlat = StyleSheet.create({
+    container: {
+    marginTop: 50,
+    },
+    item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    },
+    name: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    },
+    email: {
+    fontSize: 14,
+    },
+    });
+    const stylesFlatBackend = StyleSheet.create({
+      container: {
+      justifyContent: 'center',
+      paddingTop: 50,
+      },
+      item: {
+      backgroundColor: '#2486d1',
+      padding: 20,
+      marginVertical: 8,
+      marginHorizontal: 16,
+      },
+      name: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      },
+      email: {
+      fontSize: 16,
+      },
+      });
 
-export { styles, stylesPractice ,stylesLogin };
+export { styles, stylesPractice ,stylesLogin ,stylesFlat ,stylesFlatBackend };
