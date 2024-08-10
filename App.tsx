@@ -12,7 +12,8 @@ const App = (): React.JSX.Element => {
       {/* <FlatlistExample/>  */}
       {/* <ProfileScreen/> */}
       {/* <Login/> */}
-      <FlatlistBackend/>
+      {/* <FlatlistBackend/> */}
+      <NewsApp/>
     </View>
   );
 };
