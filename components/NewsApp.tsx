@@ -21,7 +21,7 @@ const NewsApp = () => {
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
-        setData(data);
+        setData(data.articles)
         setLoading(false);
       })
       .catch((error) => {
@@ -30,14 +30,14 @@ const NewsApp = () => {
       });
   }, []);
   const _renderItem = ({item}:{item:User})=>(
-    <View style={stylesNews.container}>
+    <View style={stylesNews.card}>
         <Text style={stylesNews.headline}>{item.title}</Text>
         <Text style={stylesNews.description}>{item.author}</Text>
         <Text style={stylesNews.date}>{item.publishedAt}</Text>
     </View>
 )   
   return (
-    <View>
+    <View style={stylesNews.container}>
       {loading?(
         <ActivityIndicator size="large" color="red"/>
       ):(
