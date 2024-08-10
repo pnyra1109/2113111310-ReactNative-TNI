@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, Button } from "react-native";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { styles } from "../styles/styles";
 
 const ProfileScreen = (): React.JSX.Element => {
@@ -13,9 +13,10 @@ const ProfileScreen = (): React.JSX.Element => {
     <View style={styles.container}>
       <View style={styles.profileContainer}>
         <Image style={styles.profileImage} source={profileImage} />
-        <Text style={styles.profileName}>Pheeranat Ratchatavarah</Text>
+
         <View>
-        <Button
+          <Text style={styles.profileName}>Pheeranat Ratchatavarah</Text>
+          <Button
             title="change name"
             color="#841584"
             onPress={handleChangeName}
@@ -26,13 +27,10 @@ const ProfileScreen = (): React.JSX.Element => {
             color="#841584"
             onPress={handleChangeImage}
           />
-        </View>  
+        </View>
       </View>
     </View>
   );
 };
 
 export default ProfileScreen;
-
-
-
