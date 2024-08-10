@@ -10,11 +10,11 @@ const Login = () => {
       if (username === "" && email === "") {
         Alert.alert("Alert", "Please Enter Name\nPlease Enter Email");
       } else if (username === "") {
-        Alert.alert("Alert", "Please Enter Name");
+        Alert.alert("Alert", "Please Enter Name"),[{text:"OK"}];
       } else if (email === "") {
-        Alert.alert("Alert", "Please Enter Email");
+        Alert.alert("Alert", "Please Enter Email",[{text:"OK"}]);
       } else {
-        Alert.alert("Alert", "Success");
+        Alert.alert("Alert", "Success",[{text:"OK"}]);
       }
     };
   return (
