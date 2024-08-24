@@ -149,7 +149,7 @@ const stylesFlatBackend = StyleSheet.create({
 });
 const stylesNews = StyleSheet.create({
   container: {
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#26c764",
     padding: 16,
   },
   loadingContainer: {
@@ -165,7 +165,7 @@ const stylesNews = StyleSheet.create({
     color: "red",
   },
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: "#26c7c4",
     padding: 16,
     marginVertical: 8,
     borderRadius: 10,
