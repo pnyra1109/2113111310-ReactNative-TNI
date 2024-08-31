@@ -404,6 +404,49 @@ const stylesWeatherApp = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+const stylesAboutScreen = StyleSheet.create({
+  container: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  myImage: {
+    width: "100%",
+    height: 200,
+    marginTop: 50,
+  },
+  myImageNetwork: {
+    width: 50,
+    height: 50,
+    marginTop: 10,
+  },
+  bgImage: {
+    width: "100%",
+    height: "100%",
+  },
+});
+const stylesCreatePost = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  postContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 50,
+  },
+  postText: {
+    margin: 10,
+    fontSize: 16,
+  },
+  postContent: {
+    color: "blue", // เปลี่ยนสีข้อความที่ถูกส่งกลับมา
+    fontWeight: "bold",
+  },
+});
 
 export {
   styles,
@@ -416,5 +459,7 @@ export {
   stylesPostAxios,
   stylesWeather,
   stylesModel,
-  stylesWeatherApp
+  stylesWeatherApp,
+  stylesAboutScreen,
+  stylesCreatePost,
 };
