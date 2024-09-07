@@ -1,10 +1,8 @@
 import { View, Text, Button, Alert } from "react-native";
 import React, { useLayoutEffect } from "react";
-import { stylesCreatePost } from "../styles/styles";
-import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 ("@react-navigation/native");
-import AppLogo from "../components/AppLogo";
+import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import {
   HeaderButton,
   HeaderButtons,
@@ -17,14 +15,11 @@ const MaterialHeaderButton = (props: any) => (
   <HeaderButton IconComponent={MaterialIcon} iconSize={23} {...props} />
 );
 
-const HomeScreen = (): React.JSX.Element => {
-  
+const ProductScreen = ():React.JSX.Element => {
   const navigation = useNavigation<any>();
-
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "หน้าหลัก",
-      headerTitle: () => <AppLogo />,
       headerTitleAlign: "center",
       headerLeft: () => (
         <HeaderButtons HeaderButtonComponent={MaterialHeaderButton}>
@@ -38,34 +33,13 @@ const HomeScreen = (): React.JSX.Element => {
           />
         </HeaderButtons>
       ),
-      headerRight: () => (
-        <HeaderButtons HeaderButtonComponent={MaterialHeaderButton}>
-          <Item
-            title="logout"
-            iconName="logout"
-            onPress={() => {
-              Alert.alert("Log out", "Close Menu");
-            }}
-          />
-        </HeaderButtons>
-      ),
     });
   }, [navigation]);
-
-  const gotoAbout = () => {
-    navigation.navigate("About", {
-      companyname: "Thai Nichi Institute of tecnology",
-      companyId: 100,
-    });
-  };
-
   return (
-    <View style={stylesCreatePost.container}>
-      <MaterialIcon name="home" size={40} color="blue" />
-      <Text>HomeScreen</Text>
-      <Button title="About us" onPress={gotoAbout} />
+    <View>
+      <Text>ProductScreen</Text>
     </View>
-  );
-};
+  )
+}
 
-export default HomeScreen;
+export default ProductScreen
