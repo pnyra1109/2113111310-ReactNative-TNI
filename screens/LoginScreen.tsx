@@ -1,6 +1,6 @@
 import { View } from "react-native";
-import React from "react";
-import { Text, Card, Input, Button } from "@rneui/base";
+import React, { useState } from "react";
+import { Text, Card, Input, Button , Icon} from "@rneui/base";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
@@ -9,6 +9,7 @@ import { login } from "../services/auth-servise";
 import Toast from "react-native-toast-message";
 
 const LoginScreen = (): React.JSX.Element => {
+  const [showPassword,setShowPassword] = useState(false);
   //1
   const schema = yup.object().shape({
     email: yup
@@ -76,6 +77,13 @@ const LoginScreen = (): React.JSX.Element => {
             <Input
               placeholder="Password"
               leftIcon={{ name: "key" }}
+              rightIcon={
+                <Icon
+                  name={showPassword?"eye":"eye-off"}
+                  type="feather"
+                  onPress={()=>setShowPassword(!showPassword)}
+                />
+              }
               keyboardType="number-pad"
               secureTextEntry
               onBlur={onBlur}

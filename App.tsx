@@ -15,6 +15,10 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import ProductScreen from "./screens/ProductScreen";
 import LoginScreen from "./screens/LoginScreen";
 import Toast from "react-native-toast-message";
+import { Provider } from "react-redux";
+import { store } from './redux-toolkit/store';
+
+
 const ProductStack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -85,8 +89,6 @@ const App = (): React.JSX.Element => {
 
   return (
     <>
-      <SafeAreaProvider>
-        <NavigationContainer>
           <HeaderButtonsProvider stackType="native">
             {isLogin ? (
               <Drawer.Navigator
@@ -100,13 +102,21 @@ const App = (): React.JSX.Element => {
               <LoginStackScreen />
             )}
           </HeaderButtonsProvider>
-        </NavigationContainer>
-      </SafeAreaProvider>
       <Toast />
     </>
   );
 };
 
-export default App;
+const AppWrapper = ()=>{
+  return(
+    <Provider store={store}>
+      <SafeAreaProvider>
+      <NavigationContainer>
+        <App/>
+      </NavigationContainer>
+      </SafeAreaProvider>
+    </Provider>
+  );
+};
 
-const styles = StyleSheet.create({});
+export default AppWrapper;
