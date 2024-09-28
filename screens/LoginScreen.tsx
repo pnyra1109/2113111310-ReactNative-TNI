@@ -7,8 +7,11 @@ import { useForm, Controller } from "react-hook-form";
 import { AxiosError } from "../services/http-service";
 import { login } from "../services/auth-servise";
 import Toast from "react-native-toast-message";
+import {setIsLogin } from "../auth/auth-sliec";
+import { useAppDispatch } from "../redux-toolkit/hooks";
 
 const LoginScreen = (): React.JSX.Element => {
+  const dispatch = useAppDispatch();
   const [showPassword,setShowPassword] = useState(false);
   //1
   const schema = yup.object().shape({
@@ -35,7 +38,8 @@ const LoginScreen = (): React.JSX.Element => {
     try {
       const response = await login(data.email,data.password);
       if(response.status===200){
-        Toast.show({type:'success',text1:'Login Success'})
+        dispatch(setIsLogin(true));
+        //Toast.show({type:'success',text1:'Login Success'})
         // console.log('Login Success')
       }
     } catch (errors:any) {

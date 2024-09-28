@@ -1,4 +1,4 @@
-import { View, Text, Button, Alert } from "react-native";
+import { View, Button} from "react-native";
 import React, { useLayoutEffect } from "react";
 import { stylesCreatePost } from "../styles/styles";
 import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -11,6 +11,12 @@ import {
   Item,
 } from "react-navigation-header-buttons";
 
+import { useAppDispatch, useAppSelector } from "../redux-toolkit/hooks";
+import { selectAuthState, setIsLogin } from "../auth/auth-sliec";
+import { logout } from "../services/auth-servise";
+import {Text} from '@rneui/base'; // ใช้companent Text จาก React Native Base
+
+
 const MaterialHeaderButton = (props: any) => (
   // the `props` here come from <Item ... />
   // you may access them and pass something else to `HeaderButton` if you like
@@ -20,6 +26,8 @@ const MaterialHeaderButton = (props: any) => (
 const HomeScreen = (): React.JSX.Element => {
   
   const navigation = useNavigation<any>();
+  const dispatch =useAppDispatch();
+  const {profile} = useAppSelector(selectAuthState);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -43,8 +51,9 @@ const HomeScreen = (): React.JSX.Element => {
           <Item
             title="logout"
             iconName="logout"
-            onPress={() => {
-              Alert.alert("Log out", "Close Menu");
+            onPress={async() => {
+              await logout();
+              dispatch(setIsLogin(false));
             }}
           />
         </HeaderButtons>
@@ -62,7 +71,12 @@ const HomeScreen = (): React.JSX.Element => {
   return (
     <View style={stylesCreatePost.container}>
       <MaterialIcon name="home" size={40} color="blue" />
-      <Text>HomeScreen</Text>
+      {profile?(
+        <>
+          <Text h3> Welcome {profile.name}</Text>
+          <Text> Email:{profile.eamail} ID:{profile.id} Role: {profile.role}</Text>
+        </>
+      ):null}
       <Button title="About us" onPress={gotoAbout} />
     </View>
   );
