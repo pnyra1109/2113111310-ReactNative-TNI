@@ -25,11 +25,76 @@ import {
   setProfile,
 } from "./auth/auth-sliec";
 import { getProfile } from "./services/auth-servise";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import CameraScreen from "./screens/CameraScreen";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 const ProductStack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const LoginStack = createNativeStackNavigator();
+const CameraStack = createNativeStackNavigator();
+
+const Tab = createBottomTabNavigator();
+
+function TabContainer() {
+  return (
+    <Tab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+      let iconName = ""; 
+      
+      if (route.name === 'HomeStack') {
+      iconName = focused
+      ? 'home'
+      : 'home-outline';
+      } else if (route.name === 'CameraStack') {
+      iconName = focused ? 'camera' : 'camera-outline';
+      }
+      
+      // You can return any component that you like here!
+      return <Ionicons name={iconName} size={size} color={color} />;
+      },
+      tabBarActiveTintColor: 'tomato',
+      tabBarInactiveTintColor: 'gray',
+      headerShown: false,
+      tabBarActiveBackgroundColor:'lightblue'
+      })}
+
+      
+    >
+      <Tab.Screen
+        name="HomeStack"
+        component={HomeStackScreen}
+        options={{ tabBarLabel: "หน้าหลัก" }}
+      />
+      <Tab.Screen
+        name="CameraStack"
+        component={CameraStackScreen}
+        options={{ tabBarLabel: "กล้อง" }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+function CameraStackScreen() {
+  return (
+    <CameraStack.Navigator
+      initialRouteName="Camera"
+      screenOptions={{
+        headerTitleStyle: { fontWeight: "bold" },
+      }}
+    >
+      <CameraStack.Screen
+        name="Camera"
+        component={CameraScreen}
+        options={{ title: "Camera" }}
+      />
+      {/* <HomeStack.Screen name='CreatePost' component={CreatePostScreen}/> */}
+    </CameraStack.Navigator>
+  );
+}
 
 function HomeStackScreen() {
   return (
@@ -101,7 +166,7 @@ const App = (): React.JSX.Element => {
     try {
       dispatch(setIsLoading(true));
       const response = await getProfile();
-      if (response?.data.user) {
+      if (response?.data.data.user) {
         dispatch(setProfile(response.data.data.user));
         dispatch(setIsLogin(true));
       } else {
@@ -110,7 +175,7 @@ const App = (): React.JSX.Element => {
     } catch (error) {
       console.log(error);
     } finally {
-      dispatch(setIsLoading(false));  
+      dispatch(setIsLoading(false));
     }
   };
 
@@ -135,7 +200,7 @@ const App = (): React.JSX.Element => {
             screenOptions={{ headerShown: false }}
             drawerContent={(props) => <MenuScreen {...props} />}
           >
-            <Drawer.Screen name="HomeStack" component={HomeStackScreen} />
+            <Drawer.Screen name="Home" component={TabContainer} />
             <Drawer.Screen name="Product" component={ProductStackScreen} />
           </Drawer.Navigator>
         ) : (

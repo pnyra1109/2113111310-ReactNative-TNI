@@ -29,6 +29,8 @@ const HomeScreen = (): React.JSX.Element => {
   const dispatch =useAppDispatch();
   const {profile} = useAppSelector(selectAuthState);
 
+  console.log(profile);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "หน้าหลัก",
